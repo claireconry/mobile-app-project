@@ -43,6 +43,7 @@ export class HomePage implements OnInit {
   }
 
   goToMovieDetails(movie: any) {
-    this.router.navigate(['/movie-details'], { state: { movie } });
+    this.movieService.selectedMovie = movie;
+    this.router.navigate(['/movie-details']);
   }
 }

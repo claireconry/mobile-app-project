@@ -29,7 +29,7 @@ export class MovieDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.movie = history.state.movie;
+    this.movie = this.movieService.selectedMovie;
     if (this.movie) {
       this.movieService.getMovieCredits(this.movie.id).subscribe((data: any) => {
         this.cast = data.cast;
