@@ -1,13 +1,46 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>movie-details</ion-title>
+    <ion-title>Movie Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/favourites">
+        <ion-icon name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">movie-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div *ngIf="movie">
+    <p>{{ movie.overview }}</p>
+    <ion-button expand="block" (click)="toggleFavourite()">
+      {{ isFavourite ? 'Remove From Favourites' : 'Add To Favourites' }}
+    </ion-button>
+
+    <h3>Cast</h3>
+    <ion-list>
+      <ion-item *ngFor="let member of cast" (click)="goToDetails(member)">
+        <img [src]="'https://image.tmdb.org/t/p/w92' + member.profile_path" slot="start">
+        <ion-label>
+          <h2>{{ member.name }}</h2>
+          <p>{{ member.character }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <h3>Crew</h3>
+    <ion-list>
+      <ion-item *ngFor="let member of crew" (click)="goToDetails(member)">
+        <img [src]="'https://image.tmdb.org/t/p/w92' + member.profile_path" slot="start">
+        <ion-label>
+          <h2>{{ member.name }}</h2>
+          <p>{{ member.job }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
