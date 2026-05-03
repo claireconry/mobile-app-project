@@ -8,6 +8,7 @@ export class MovieService {
   private apiKey = '21acb0955401e4c44da8304d6998b95f';
   private baseUrl = 'https://api.themoviedb.org/3';
   selectedMovie: any = null;
+  selectedPerson: any = null;
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +22,13 @@ export class MovieService {
 
   getMovieCredits(movieId: number) {
     return this.http.get(`${this.baseUrl}/movie/${movieId}/credits?api_key=${this.apiKey}`);
+  }
+
+  getPersonDetails(personId: number) {
+    return this.http.get(`${this.baseUrl}/person/${personId}?api_key=${this.apiKey}`);
+  }
+
+  getPersonMovieCredits(personId: number) {
+    return this.http.get(`${this.baseUrl}/person/${personId}/movie_credits?api_key=${this.apiKey}`);
   }
 }
