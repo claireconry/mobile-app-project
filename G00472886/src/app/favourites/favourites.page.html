@@ -1,13 +1,21 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>favourites</ion-title>
+    <ion-title>Favourites</ion-title>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">favourites</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <p *ngIf="favourites.length === 0">No favourites yet!</p>
+
+  <ion-list>
+    <ion-item *ngFor="let movie of favourites">
+      <ion-label>{{ movie.title }}</ion-label>
+      <ion-button slot="end" (click)="goToMovieDetails(movie)">Details</ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
