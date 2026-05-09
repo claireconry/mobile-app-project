@@ -24,7 +24,8 @@
     <h3>Cast</h3>
     <ion-list>
       <ion-item *ngFor="let member of cast" (click)="goToDetails(member)">
-        <img [src]="'https://image.tmdb.org/t/p/w92' + member.profile_path" slot="start">
+        <img *ngIf="member.profile_path" [src]="'https://image.tmdb.org/t/p/w92' + member.profile_path" slot="start">
+        <p *ngIf="!member.profile_path" slot="start">No image</p>
         <ion-label>
           <h2>{{ member.name }}</h2>
           <p>{{ member.character }}</p>
@@ -35,12 +36,13 @@
     <h3>Crew</h3>
     <ion-list>
       <ion-item *ngFor="let member of crew" (click)="goToDetails(member)">
-        <img [src]="'https://image.tmdb.org/t/p/w92' + member.profile_path" slot="start">
+        <img *ngIf="member.profile_path" [src]="'https://image.tmdb.org/t/p/w92' + member.profile_path" slot="start">
+        <p *ngIf="!member.profile_path" slot="start">No image</p>
         <ion-label>
           <h2>{{ member.name }}</h2>
           <p>{{ member.job }}</p>
         </ion-label>
       </ion-item>
     </ion-list>
-  </div>
+ </div>
 </ion-content>
